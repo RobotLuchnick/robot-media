@@ -17,7 +17,8 @@ services:
          - /opt/jellyfin/lib:/var/lib/jellyfin
          - /opt/jellyfin/log:/var/log/jellyfin
            #- /opt/jellyfin/media:/var/jellyfin/media
-         - /opt/jellyfin/media/videos:/var/jellyfin/media/
+         - /opt/jellyfin/media:/media
+      privileged: true
 
    nzbget:
       image: lscr.io/linuxserver/nzbget

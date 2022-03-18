@@ -16,7 +16,8 @@ services:
          - /opt/jellyfin/cache:/var/cache/jellyfin
          - /opt/jellyfin/lib:/var/lib/jellyfin
          - /opt/jellyfin/log:/var/log/jellyfin
-         - /opt/jellyfin/media:/var/jellyfin/media
+           #- /opt/jellyfin/media:/var/jellyfin/media
+         - /opt/jellyfin/media/videos:/var/jellyfin/media/
 
    nzbget:
       image: lscr.io/linuxserver/nzbget
@@ -32,5 +33,5 @@ services:
       volumes:
          - /opt/nzbget/config:/config
          - /opt/nzbget/downloads:/downloads #optional
-     #ports:
-     #    - 6789:6789
+      #ports:
+      #   - 6789:6789

@@ -16,23 +16,32 @@ services:
          - /opt/jellyfin/cache:/var/cache/jellyfin
          - /opt/jellyfin/lib:/var/lib/jellyfin
          - /opt/jellyfin/log:/var/log/jellyfin
-           #- /opt/jellyfin/media:/var/jellyfin/media
-         - /opt/jellyfin/media:/media
-      privileged: true
+         - type: volume
+           source: nas-media-share
+           target: /media
+           volume:
+              nocopy: true
+      
+volumes:
+   nas-media-share:
+      driver_opts:
+         type: cifs
+         device: "${CIFS_PATH}"           
+         o: "uid=0,username=${CIFS_USERNAME},password=${CIFS_PASSWORD},file_mode=0770,dir_mode=0770"
 
-   nzbget:
-      image: lscr.io/linuxserver/nzbget
-      container_name: nzbget
-      network_mode: "host"
-      restart: "unless-stopped"
-      environment:
-         - PUID=1000
-         - PGID=1000
-         - TZ=Europe/London
-         - NZBGET_USER=nzbget #optional
-         - NZBGET_PASS=tegbzn6789 #optional
-      volumes:
-         - /opt/nzbget/config:/config
-         - /opt/nzbget/downloads:/downloads #optional
+   #nzbget:
+   #   image: lscr.io/linuxserver/nzbget
+   #   container_name: nzbget
+   #   network_mode: "host"
+   #   restart: "unless-stopped"
+   #   environment:
+   #      - PUID=1000
+   #      - PGID=1000
+   #      - TZ=Europe/London
+   #      - NZBGET_USER=nzbget #optional
+   #      - NZBGET_PASS=tegbzn6789 #optional
+   #   volumes:
+   #      - /opt/nzbget/config:/config
+   #      - /opt/nzbget/downloads:/downloads #optional
       #ports:
       #   - 6789:6789

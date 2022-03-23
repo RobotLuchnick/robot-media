@@ -30,8 +30,8 @@ services:
          - PUID=1000
          - PGID=1000
          - TZ=Europe/London
-         - NZBGET_USER=nzbget #optional
-         - NZBGET_PASS=tegbzn6789 #optional
+         - NZBGET_USER=nzbget #default username... to be changed...
+         - NZBGET_PASS=tegbzn6789 #default password... to be changed...
       volumes:
          - /opt/nzbget/config:/config
          - /opt/nzbget/downloads:/downloads #optional

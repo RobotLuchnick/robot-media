@@ -32,8 +32,8 @@ jobs:
       #create the .env file and print it for review
       - name: Get weird with github secrets
         run: |
-        echo -e "CIFS_USERNAME=${{ secrets.CIFS_USERNAME }}\nCIFS_PASSWORD=${{ secrets.CIFS_PASSWORD }}\nCIFS_PATH=${{ secrets.CIFS_PATH }}" > .env
-        cat .env
+          echo -e "CIFS_USERNAME=${{ secrets.CIFS_USERNAME }}\nCIFS_PASSWORD=${{ secrets.CIFS_PASSWORD }}\nCIFS_PATH=${{ secrets.CIFS_PATH }}" > .env
+          cat .env
 
       # Runs a set of commands using the runners shell
       - name: Bring up services described

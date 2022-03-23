@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job that runs "docker compose up"
-  composedown:
+  compizzle:
     # The type of runner that the job will run on
     runs-on: [self-hosted, DockerHost]
 
@@ -32,6 +32,7 @@ jobs:
       #create the .env file and print it for review
       - name: Get weird with github secrets
         run: |
+          whoami
           echo -e "CIFS_USERNAME=${{ secrets.CIFS_USERNAME }}\nCIFS_PASSWORD=${{ secrets.CIFS_PASSWORD }}\nCIFS_PATH=${{ secrets.CIFS_PATH }}" > .env
           cat .env
 

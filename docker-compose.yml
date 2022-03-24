@@ -37,7 +37,25 @@ services:
          - /opt/nzbget/downloads:/downloads #optional
       ports:
          - 6789:6789
-      
+   radarr:
+      image: lscr.io/linuxserver/radarr
+      container_name: radarr
+      environment:
+         - PUID=1000
+         - PGID=1000
+         - TZ=Europe/London
+      volumes:
+         - /opt/radarr/data:/config
+         - /media/videos/movies:/movies #optional
+         - /opt/radarr/downloads:/downloads #optional
+         - type: volume
+           source: nas-media-share
+           target: /media
+           volume:
+              nocopy: true
+      ports:
+         - 7878:7878
+      restart: unless-stopped   
 volumes:
    nas-media-share:
       driver_opts:
